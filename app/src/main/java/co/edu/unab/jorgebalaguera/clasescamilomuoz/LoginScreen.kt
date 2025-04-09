@@ -30,11 +30,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import co.edu.unab.jorgebalaguera.clasescamilomuoz.ui.theme.ClasesCamiloMuñozTheme
 
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     Scaffold { valuesPadding ->
         Column(
             modifier = Modifier
@@ -95,10 +96,18 @@ fun LoginScreen() {
             Button(
                 onClick = {},
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFF9900)), modifier = Modifier.fillMaxWidth().height(50.dp)
+                    containerColor = Color(0xFFFF9900)), modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
             ) { Text("Iniciar Sesion", fontSize = 16.sp) }
             Spacer(modifier = Modifier.height(24.dp))
-            TextButton(onClick = {}) { Text(text = "No tienes una cuenta? Registrate", color = Color(0xFFFF9900) )}
+            TextButton(onClick = {
+                if (navController!= null){
+                    navController.navigate("register")
+                }
+
+
+            }) { Text(text = "No tienes una cuenta? Registrate", color = Color(0xFFFF9900) )}
         }
     }
 }
@@ -107,6 +116,6 @@ fun LoginScreen() {
 @Composable
 fun LoginScreenPreview() {
     ClasesCamiloMuñozTheme {
-        LoginScreen()
+       //LoginScreen()
     }
 }
